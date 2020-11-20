@@ -18,12 +18,10 @@ module Api
       def permitted_create_params
         params.require(:scheduledMenu).permit(
           schedule: [:date, :category, :image],
-          menus:[]
+          menus: [:dish_id, :category, :image]
         )
         @schedule_create_params = params.require(:scheduledMenu).permit(schedule: [:date, :category, :image])[:schedule]
-        menus_request = params.require(:scheduledMenu).permit(menus: [])[:menus]
-        menus_params = menus_request.map { |menu| JSON.parse(menu) }
-        @menus_create_params = ActionController::Parameters.new(menus: menus_params).permit(menus: [:dish_id, :category])[:menus]
+        @menus_create_params = params.require(:scheduledMenu).permit(menus: [:dish_id, :category, :image])[:menus].values
       end
     end
   end

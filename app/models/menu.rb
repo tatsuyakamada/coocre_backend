@@ -1,6 +1,7 @@
 class Menu < ApplicationRecord
   belongs_to :schedule
   belongs_to :dish
+  has_one_attached :image
 
   enum category: { main: 0, side: 1, dessert: 2, other: 3 }
 
