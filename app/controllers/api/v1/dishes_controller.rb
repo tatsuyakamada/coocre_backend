@@ -4,7 +4,6 @@ module Api
       before_action :find_dish, only: [:show, :update, :destroy]
       def index
         @dishes = Dish.all
-        render json: @dishes
       end
 
       def show
@@ -24,6 +23,10 @@ module Api
 
       def destroy
         @dish.destroy
+      end
+
+      def dish_list_for_selector
+        @dishes = Dish.all
       end
 
       private
