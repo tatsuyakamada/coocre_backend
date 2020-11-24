@@ -1,6 +1,6 @@
 class Schedule < ApplicationRecord
   has_many :menus
-  has_one_attached :image
+  has_many_attached :images
 
   enum category: { morning: 0, lunch: 1, dinner: 2, brunch: 3 }
 
