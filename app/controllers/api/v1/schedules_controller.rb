@@ -17,10 +17,10 @@ module Api
 
       def permitted_create_params
         params.require(:scheduledMenu).permit(
-          schedule: [:date, :category, :image],
+          schedule: [:date, :category, images: []],
           menus: [:dish_id, :category, :image]
         )
-        @schedule_create_params = params.require(:scheduledMenu).permit(schedule: [:date, :category, :image])[:schedule]
+        @schedule_create_params = params.require(:scheduledMenu).permit(schedule: [:date, :category, images: []])[:schedule]
         @menus_create_params = params.require(:scheduledMenu).permit(menus: [:dish_id, :category, :image])[:menus].values
       end
     end
