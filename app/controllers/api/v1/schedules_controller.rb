@@ -9,7 +9,7 @@ module Api
       def create
         Schedule.transaction do
           @schedule = Schedule.create!(@schedule_create_params)
-          @schedule.menus.create!(@menus_create_params)
+          @schedule.menus.create!(@menus_create_params) if @menus_create_params
         end
       end
 
@@ -17,11 +17,12 @@ module Api
 
       def permitted_create_params
         params.require(:scheduledMenu).permit(
-          schedule: [:date, :category, images: []],
-          menus: [:dish_id, :category, :image]
+          schedule: [:date, :category, :memo, images: []],
+          menus: [:dish_id, :category, :memo, :image]
         )
-        @schedule_create_params = params.require(:scheduledMenu).permit(schedule: [:date, :category, images: []])[:schedule]
-        @menus_create_params = params.require(:scheduledMenu).permit(menus: [:dish_id, :category, :image])[:menus].values
+        @schedule_create_params = params.require(:scheduledMenu).permit(schedule: [:date, :category, :memo, images: []])[:schedule]
+        menus_params = params.require(:scheduledMenu).permit(menus: [:dish_id, :category, :memo, :image])[:menus]
+        @menus_create_params = menus_params.values if menus_params
       end
     end
   end
