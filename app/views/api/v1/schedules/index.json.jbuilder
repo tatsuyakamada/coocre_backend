@@ -4,10 +4,21 @@ json.array! @schedules do |schedule|
     json.date schedule.date
     json.category schedule.category
     json.memo schedule.memo
-    json.images schedule.images.attached? ? schedule.images.map { |image| rails_blob_url(image) } : nil
+    json.images do
+      if schedule.images.attached?
+        json.array! schedule.images do |image|
+          json.id image.id
+          json.name image.filename.to_s
+          json.url rails_blob_url(image)
+        end
+      else
+        nil
+      end
+    end
   end
+
   json.menus do
-    json.array!(schedule.menus.order(:category)) do |menu|
+    json.array! schedule.menus.order(:category) do |menu|
       json.id menu.id
       json.category menu.category
       json.dishId menu.dish_id
