@@ -24,7 +24,15 @@ json.array! @schedules do |schedule|
       json.dishId menu.dish_id
       json.dishName menu.dish.name
       json.memo menu.memo
-      json.image menu.image.attached? ? rails_blob_url(menu.image) : nil
+      json.image do
+        if menu.image.attached?
+          json.id menu.image.id
+          json.name menu.image.filename.to_s
+          json.url rails_blob_url(menu.image)
+        else
+          nil
+        end
+      end
     end
   end
 end
