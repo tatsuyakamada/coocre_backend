@@ -11,6 +11,8 @@ class Menu < ApplicationRecord
   validate :duplicate?
 
   def duplicate?
-    Menu.where(schedule_id: schedule_id, dish_id: dish_id).count > 1
+    if Menu.where(schedule_id: schedule_id, dish_id: dish_id).count > 0
+      errors.add(:dish_id, 'duplicated!')
+    end
   end
 end

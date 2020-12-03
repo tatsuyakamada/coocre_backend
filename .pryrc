@@ -9,20 +9,14 @@ if defined?(PryByebug)
   Pry.commands.alias_command 'fin', 'finish'
 end
 
-#  begin
-#    require 'awesome_print'
-#    Pry.config.print = proc { |output, value| output.puts value.ai }
-#  rescue LoadError => err
-#    puts "no awesome_print :("
-#  end
+begin
+  require 'awesome_print'
+  Pry.config.print = proc { |output, value| output.puts value.ai }
+rescue LoadError => err
+  puts "no awesome_print :("
+end
 
 # hirb
-
-begin
-  require 'hirb'
-rescue LoadError
-  # Missing goodies, bummer
-end
 
 if defined?(Hirb) && false
   # Slightly dirty hack to fully support in-session Hirb.disable/enable toggling
