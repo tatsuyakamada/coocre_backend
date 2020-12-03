@@ -7,7 +7,14 @@ module Api
       end
 
       def show
-        render json: @dish
+        menus = Menu.includes(:schedule).where(dish_id: params[:id]).order('schedules.date', 'schedules.category')
+        @images = []
+        @schedules = []
+
+        menus.each do |menu|
+          @images << menu.image
+          @schedules << menu.schedule
+        end
       end
 
       def create
