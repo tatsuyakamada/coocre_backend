@@ -1,7 +1,7 @@
 module Api
   module V1
     class DishesController < ApplicationController
-      before_action :find_dish, only: [:show, :update, :destroy]
+      before_action :find_dish, only: %i[show update destroy]
       def index
         @dishes = Dish.all
       end
@@ -19,9 +19,7 @@ module Api
 
       def create
         @dish = Dish.new(permitted_params)
-        unless @dish.save
-          render status: 500, json: { status: 500, messages: @dish.errors.messages }
-        end
+        render status: 500, json: { status: 500, messages: @dish.errors.messages } unless @dish.save
       end
 
       def update

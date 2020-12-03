@@ -28,8 +28,6 @@ json.schedules do
             json.width image.metadata[:width]
             json.height image.metadata[:height]
           end
-        else
-          nil
         end
       end
     end
@@ -48,8 +46,6 @@ json.schedules do
             json.url rails_blob_url(menu.image)
             json.width menu.image.metadata[:width]
             json.height menu.image.metadata[:height]
-          else
-            nil
           end
         end
       end
