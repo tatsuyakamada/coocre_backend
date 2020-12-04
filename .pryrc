@@ -1,6 +1,6 @@
 ## Settings
 Pry.config.color = true
-Pry.config.editor = "vim"
+Pry.config.editor = 'vim'
 
 if defined?(PryByebug)
   Pry.commands.alias_command 'c', 'continue'
@@ -12,13 +12,13 @@ end
 begin
   require 'awesome_print'
   Pry.config.print = proc { |output, value| output.puts value.ai }
-rescue LoadError => err
-  puts "no awesome_print :("
+rescue LoadError
+  puts 'no awesome_print :('
 end
 
 # hirb
 
-if defined?(Hirb) && false
+if defined?(Hirb)
   # Slightly dirty hack to fully support in-session Hirb.disable/enable toggling
   Hirb::View.instance_eval do
     def enable_output_method
