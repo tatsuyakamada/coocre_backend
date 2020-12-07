@@ -1,7 +1,8 @@
 module Api
   module V1
-    class DishesController < ApplicationController
+    class DishesController < Api::V1::ApplicationController
       before_action :find_dish, only: %i[show update destroy]
+
       def index
         @dishes = Dish.all
       end

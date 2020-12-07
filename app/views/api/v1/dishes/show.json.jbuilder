@@ -4,11 +4,13 @@ end
 
 json.images do
   json.array! @images do |image|
-    json.id image.id
-    json.name image.name
-    json.url rails_blob_url(image)
-    json.width image.metadata[:width]
-    json.height image.metadata[:height]
+    if image.attached?
+      json.id image.id
+      json.name image.name
+      json.url rails_blob_url(image)
+      json.width image.metadata[:width]
+      json.height image.metadata[:height]
+    end
   end
 end
 
