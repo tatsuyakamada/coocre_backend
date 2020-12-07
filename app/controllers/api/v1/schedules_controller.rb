@@ -1,6 +1,6 @@
 module Api
   module V1
-    class SchedulesController < ApplicationController
+    class SchedulesController < Api::V1::ApplicationController
       before_action :permitted_create_params, only: :create
       before_action :permitted_update_params, only: :update
 
@@ -33,7 +33,7 @@ module Api
           schedule: [:date, :category, :memo, images: []],
           menus: %i[dish_id category memo image]
         )
-        @menus_create_params = @create_params[:menus].values
+        @menus_create_params = @create_params[:menus]&.values
       end
 
       def permitted_update_params
