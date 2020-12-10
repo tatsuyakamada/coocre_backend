@@ -10,6 +10,8 @@ json.array! @schedules do |schedule|
           json.id image.id
           json.name image.filename.to_s
           json.url rails_blob_url(image)
+          json.width image.metadata[:width]
+          json.height image.metadata[:height]
         end
       end
     end
@@ -27,6 +29,8 @@ json.array! @schedules do |schedule|
           json.id menu.image.id
           json.name menu.image.filename.to_s
           json.url rails_blob_url(menu.image)
+          json.width menu.image.metadata[:width]
+          json.height menu.image.metadata[:height]
         end
       end
     end
