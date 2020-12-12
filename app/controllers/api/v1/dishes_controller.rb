@@ -42,7 +42,7 @@ module Api
       end
 
       def permitted_params
-        params.fetch(:dish).permit(:name, :genre)
+        params.fetch(:dish).permit(:name, :genre, :category)
       end
     end
   end
