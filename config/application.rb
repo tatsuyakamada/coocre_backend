@@ -41,8 +41,5 @@ module Coocre
                  methods: %i[get post put patch delete options head]
       end
     end
-    config.generators do |g|
-      g.test_framework = false
-    end
   end
 end
