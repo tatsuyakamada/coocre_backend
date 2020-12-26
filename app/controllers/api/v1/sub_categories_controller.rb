@@ -1,18 +1,24 @@
 module Api
   module V1
     class SubCategoriesController < Api::V1::ApplicationController
+      before_action :find_sub_category, only: [:update]
+
       def create
-        sub_cateogry = SubCategory.new(permitted_params)
-        sub_cateogry.save!
-        render json: sub_cateogry
+        sub_category = SubCategory.new(permitted_params)
+        sub_category.save!
+        render json: sub_category
       end
 
       def update
-        sub_cateogry = SubCategory.find(params[:id])
-        sub_cateogry.update!(permitted_params)
+        @sub_category.update!(permitted_params)
+        render json: @sub_category
       end
 
       private
+
+      def find_sub_category
+        @sub_category = SubCategory.find(params[:id])
+      end
 
       def permitted_params
         params.require(:sub_category).permit(:name, :category_id)

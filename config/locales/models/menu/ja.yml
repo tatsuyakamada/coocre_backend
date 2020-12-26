@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    attributes:
+      menu:
+        schedule: スケジュール
+        dish: 料理
+        category: カテゴリー
+        memo: メモ
