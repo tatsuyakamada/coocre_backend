@@ -1,6 +1,7 @@
 module Api
   module V1
     class SchedulesController < Api::V1::ApplicationController
+      before_action :find_schedule, only: %i[update destroy]
       before_action :permitted_create_params, only: :create
       before_action :permitted_update_params, only: :update
 
@@ -13,10 +14,10 @@ module Api
           @schedule = Schedule.create!(@create_params[:schedule])
           @schedule.menus.create!(@menus_create_params) if @menus_create_params
         end
+        render json: @schedule
       end
 
       def update
-        @schedule = Schedule.find(@schedule_update_params[:id])
         Schedule.transaction do
           @schedule.update!(@schedule_update_params.slice(*Schedule.attribute_names))
           @schedule_update_params[:delete_images]&.each { |image| @schedule.images.delete(image) }
@@ -26,7 +27,16 @@ module Api
         end
       end
 
+      def destroy
+        @schedule.destroy!
+        render json: @schedule
+      end
+
       private
+
+      def find_schedule
+        @schedule = Schedule.find(params[:id])
+      end
 
       def permitted_create_params
         @create_params = params.require(:scheduledMenu).permit(

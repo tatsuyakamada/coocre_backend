@@ -19,16 +19,18 @@ module Api
       end
 
       def create
-        @dish = Dish.new(permitted_params)
-        render status: 500, json: { status: 500, messages: @dish.errors.messages } unless @dish.save
+        dish = Dish.create!(permitted_params)
+        render json: dish
       end
 
       def update
         @dish.update(permitted_params)
+        render json: @dish
       end
 
       def destroy
-        @dish.destroy
+        @dish.destroy!
+        render json: @dish
       end
 
       def dish_list_for_selector

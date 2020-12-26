@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    attributes:
+      dish:
+        name: 料理名
+        genre: ジャンル
+        category: カテゴリー
+        menus: メニュー
