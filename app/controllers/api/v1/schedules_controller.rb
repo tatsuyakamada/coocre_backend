@@ -25,6 +25,7 @@ module Api
 
           menus_update
         end
+        render json: @schedule
       end
 
       def destroy
@@ -53,14 +54,17 @@ module Api
         )
 
         @schedule_update_params = update_params[:schedule]
-        @menus_create_params, @menus_update_params = update_params[:menus].values.partition { |menu| menu[:id].blank? }
+        @menus_create_params, @menus_update_params = update_params[:menus]&.values&.partition { |menu| menu[:id].blank? }
       end
 
       def menus_update
-        @menus_update_params.each { |param| menu_upate(param) }
+        if @menus_update_params
+          @menus_update_params.each { |param| menu_upate(param) }
 
-        delete_ids = @schedule.menus.ids - @menus_update_params.map { |menu| menu[:id].to_i }
-        @schedule.menus.where(id: delete_ids).delete_all if delete_ids
+          delete_ids = @schedule.menus.ids - @menus_update_params.map { |menu| menu[:id].to_i }
+          @schedule.menus.where(id: delete_ids).delete_all if delete_ids
+        end
+
         @schedule.menus.create!(@menus_create_params) if @menus_create_params
       end
 
