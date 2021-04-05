@@ -6,8 +6,8 @@ require:
   - rubocop-performance
 
 AllCops:
-  TargetRubyVersion: 2.7
-  TargetRailsVersion: 6.0
+  TargetRubyVersion: 3.0
+  TargetRailsVersion: 6.1
   Exclude:
     - 'vendor/**/*'
     - 'bin/**/*'
@@ -19,15 +19,15 @@ AllCops:
 Rails:
   Enabled: true
 
-Style/AndOr:
-  Enabled: false
+# Style/AndOr:
+#   Enabled: false
 
 ## 日本語コメントを許可します。
-Style/AsciiComments:
-  Enabled: false
+# Style/AsciiComments:
+#   Enabled: false
 
-Layout/CommentIndentation:
-  Enabled: false
+# Layout/CommentIndentation:
+#   Enabled: false
 
 # https://rubocop.readthedocs.io/en/stable/cops_layout/#layoutemptylinesaroundattributeaccessor
 Layout/EmptyLinesAroundAttributeAccessor:
@@ -66,8 +66,8 @@ Metrics/BlockLength:
     - 'app/views/**/*.jbuilder'
     - 'lib/tasks/dev.rake'
 
-Metrics/ClassLength:
-  CountComments: false
+# Metrics/ClassLength:
+#   CountComments: false
 
 Metrics/CyclomaticComplexity:
   Max: 10
@@ -78,8 +78,8 @@ Metrics/MethodLength:
   Exclude:
     - 'lib/tasks/dev.rake'
 
-Metrics/ModuleLength:
-  CountComments: false
+# Metrics/ModuleLength:
+#   CountComments: false
 
 Naming/FileName:
   Exclude:
@@ -92,24 +92,24 @@ Naming/MethodParameterName:
 RSpec/ContextWording:
   Enabled: false
 
-RSpec/DescribedClass:
-  Enabled: false
+# RSpec/DescribedClass:
+#   Enabled: false
 
-RSpec/ExampleLength:
-  Enabled: false
+# RSpec/ExampleLength:
+#   Enabled: false
 
-RSpec/ExpectInHook:
-  Enabled: false
+# RSpec/ExpectInHook:
+#   Enabled: false
 
 # An instance variable can be used when needed, but use let when possible.
-RSpec/InstanceVariable:
-  Enabled: false
+# RSpec/InstanceVariable:
+#   Enabled: false
 
-RSpec/MessageSpies:
-  Enabled: false
+# RSpec/MessageSpies:
+#   Enabled: false
 
-RSpec/MultipleExpectations:
-  Enabled: false
+# RSpec/MultipleExpectations:
+#   Enabled: false
 
 RSpec/NestedGroups:
   Max: 7
@@ -124,15 +124,15 @@ Style/BlockDelimiters:
   Exclude:
     - 'spec/**/*'
 
-Style/ClassAndModuleChildren:
-  Enabled: false
+# Style/ClassAndModuleChildren:
+#   Enabled: false
 
 Style/Documentation:
   Enabled: false
 
 # https://rubocop.readthedocs.io/en/stable/cops_style/#styleexponentialnotation
-Style/ExponentialNotation:
-  Enabled: true
+# Style/ExponentialNotation:
+#   Enabled: true
 
 Style/FrozenStringLiteralComment:
   Enabled: false
@@ -149,15 +149,18 @@ Style/HashTransformKeys:
 Style/HashTransformValues:
   Enabled: true
 
-Style/IfUnlessModifier:
-  Enabled: false
+# Style/IfUnlessModifier:
+#   Enabled: false
 
 Style/Lambda:
   EnforcedStyle: literal
 
-Style/RegexpLiteral:
-  Enabled: false
+# Style/RegexpLiteral:
+#   Enabled: false
 
 # https://rubocop.readthedocs.io/en/stable/cops_style/#styleslicingwithrange
 Style/SlicingWithRange:
   Enabled: true
+
+Style/HashAsLastArrayItem:
+  EnforcedStyle: no_braces

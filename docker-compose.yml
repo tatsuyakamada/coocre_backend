@@ -1,0 +1,32 @@
+version: '3'
+services:
+  api:
+    image: coocre_backend:3.0
+    container_name: coocre_backend
+    env_file: .env
+    ports:
+      - '3100:3100'
+    volumes:
+      - .:/coocre_backend:delegated
+      - /coocre_backend/vendor/bundle
+      - /coocre_backend/node_modules
+      - /coocre_backend/log
+      - /coocre_backend/git
+    command: 'bundle exec rails s -p 3100 -b 0.0.0.0'
+    tty: true
+    depends_on:
+      - db
+  db:
+    image: mysql:8.0
+    env_file: .env
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./container_data/mysql:/var/lib/mysql
+      - ./docker_ext.cnf:/etc/mysql/conf.d/my.cnf
+    ports:
+      - '33061:3306'
+volumes:
+  coocre_backend:
+    external: true
+  coocre_backend_db:
+    external: true

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Menu, type: :model do
+describe Menu do
   describe 'validation' do
     it { is_expected.to validate_presence_of(:schedule_id) }
     it { is_expected.to validate_presence_of(:dish_id) }
