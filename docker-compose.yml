@@ -25,9 +25,6 @@ services:
       - ./docker_ext.cnf:/etc/mysql/conf.d/my.cnf
     ports:
       - '33061:3306'
-    environment:
-      - POSTGRES_PASSWORD=password
-
 volumes:
   coocre_backend:
     external: true
