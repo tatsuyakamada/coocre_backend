@@ -47,6 +47,16 @@ ActiveRecord::Schema.define(version: 2021_04_02_095819) do
     t.index ["name"], name: "index_categories_on_name", unique: true
   end
 
+  create_table "dish_stuffs", charset: "utf8", force: :cascade do |t|
+    t.bigint "dish_id"
+    t.bigint "stuff_id"
+    t.integer "category"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["dish_id"], name: "index_dish_stuffs_on_dish_id"
+    t.index ["stuff_id"], name: "index_dish_stuffs_on_stuff_id"
+  end
+
   create_table "dishes", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.integer "genre", null: false

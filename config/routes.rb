@@ -6,7 +6,9 @@ Rails.application.routes.draw do
         get 'dish_list', to: 'dishes#dish_list_for_selector', on: :collection
       end
       resources :schedules, except: %i[new edit]
-      resources :stuffs, only: %i[create update destroy]
+      resources :stuffs, only: %i[create update destroy] do
+        get 'stuff_list', to: 'stuffs#stuff_list_for_selector', on: :collection
+      end
       resources :sub_categories, only: %i[create update]
     end
   end

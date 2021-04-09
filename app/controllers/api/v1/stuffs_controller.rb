@@ -18,6 +18,10 @@ module Api
         render json: @stuff
       end
 
+      def stuff_list_for_selector
+        @stuffs = Stuff.all
+      end
+
       private
 
       def find_stuff
