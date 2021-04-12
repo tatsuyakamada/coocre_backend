@@ -4,7 +4,7 @@ module Api
       before_action :find_dish, only: %i[show update destroy]
 
       def index
-        @dishes = Dish.all.includes(dish_stuffs: :stuff)
+        @dishes = Dish.includes(dish_stuffs: :stuff)
       end
 
       def show

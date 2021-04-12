@@ -5,7 +5,7 @@ json.array! @dishes do |dish|
   json.category dish.category
 
   json.dishStuffs do
-    json.array! dish.dish_stuffs.order(:category) do |dish_stuff|
+    json.array! dish.dish_stuffs do |dish_stuff|
       json.id dish_stuff.id
       json.category dish_stuff.category
       json.stuffId dish_stuff.stuff_id

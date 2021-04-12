@@ -1,7 +1,7 @@
 class Dish < ApplicationRecord
   has_many :menus, dependent: :restrict_with_error
   has_many :schedules, through: :menus
-  has_many :dish_stuffs, dependent: :destroy
+  has_many :dish_stuffs, -> { order('category ASC') }, dependent: :destroy, inverse_of: :dish
   has_many :stuffs, through: :dish_stuffs
 
   enum genre: { japanese: 0, western: 1, chinese: 2, other: 3 }, _suffix: :dish
