@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :sub_category do
     category { create(:category) }
-    name { Faker::Food.dish }
+    name { Faker::Lorem.unique.word }
   end
 end
