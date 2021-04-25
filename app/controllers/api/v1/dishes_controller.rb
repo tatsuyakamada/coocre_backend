@@ -19,8 +19,10 @@ module Api
       end
 
       def create
-        dish = Dish.create!(permitted_params)
-        render json: dish
+        @dish = Dish.create!(permitted_params.slice(*Dish.attribute_names))
+
+        permitted_params[:dish_stuffs].each { |parameter| create_stuff(parameter) }
+        render json: @dish
       end
 
       def update
@@ -50,12 +52,12 @@ module Api
 
       def dish_stuffs_update
         dish_stuff_params = permitted_params[:dish_stuffs]
-        request_ids = dish_stuff_params.pluck(:id)
-        current_ids = @dish.dish_stuffs.present? ? @dish.dish_stuffs.map(&:id) : []
+        request_ids = dish_stuff_params&.pluck(:id)
+        current_ids = @dish.dish_stuffs.present? ? @dish.dish_stuffs.pluck(:id) : []
         delete_ids = current_ids - request_ids
         @dish.dish_stuffs.where(id: delete_ids).delete_all if delete_ids.present?
         dish_stuff_params.each do |parameter|
-          parameter[:id] ? update_stuff(parameter) : create_stuff(parameter)
+          parameter[:id].present? ? update_stuff(parameter) : create_stuff(parameter)
         end
       end
 

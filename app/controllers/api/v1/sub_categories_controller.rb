@@ -4,8 +4,7 @@ module Api
       before_action :find_sub_category, only: [:update]
 
       def create
-        sub_category = SubCategory.new(permitted_params)
-        sub_category.save!
+        sub_category = SubCategory.create!(permitted_params)
         render json: sub_category
       end
 

@@ -10,27 +10,21 @@ describe Menu do
       subject { menu.valid? }
 
       let(:menu) { build(:menu, schedule_id: schedule_id, dish_id: dish_id) }
-
-      before do
-        2.times { |i| create(:dish, id: i + 1) }
-        schedule = create(:schedule, id: 1)
-        schedule.menus = [create(:menu)]
-        create(:schedule, id: 2)
-      end
+      let!(:registered_menu) { create(:menu) }
 
       context 'schedule_id' do
         context 'is same' do
-          let(:schedule_id) { 1 }
+          let(:schedule_id) { registered_menu.schedule.id }
 
-          context 'and dish_id' do
+          context 'dish_id' do
             context 'is same' do
-              let(:dish_id) { 1 }
+              let(:dish_id) { registered_menu.dish.id }
 
               it { is_expected.to be_falsey }
             end
 
             context 'is not same' do
-              let(:dish_id) { 2 }
+              let(:dish_id) { create(:dish).id }
 
               it { is_expected.to be_truthy }
             end
@@ -38,17 +32,17 @@ describe Menu do
         end
 
         context 'is not same' do
-          let(:schedule_id) { 2 }
+          let(:schedule_id) { create(:schedule).id }
 
-          context 'and dish_id' do
+          context 'dish_id' do
             context 'is same' do
-              let(:dish_id) { 1 }
+              let(:dish_id) { registered_menu.dish.id }
 
               it { is_expected.to be_truthy }
             end
 
             context 'is not same' do
-              let(:dish_id) { 2 }
+              let(:dish_id) { create(:dish).id }
 
               it { is_expected.to be_truthy }
             end

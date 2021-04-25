@@ -78,8 +78,10 @@ Metrics/MethodLength:
   Exclude:
     - 'lib/tasks/dev.rake'
 
-# Metrics/ModuleLength:
-#   CountComments: false
+Metrics/ModuleLength:
+  CountComments: false
+  Exclude:
+    - 'spec/**/*'
 
 Naming/FileName:
   Exclude:
@@ -95,8 +97,8 @@ RSpec/ContextWording:
 # RSpec/DescribedClass:
 #   Enabled: false
 
-# RSpec/ExampleLength:
-#   Enabled: false
+RSpec/ExampleLength:
+  Enabled: false
 
 # RSpec/ExpectInHook:
 #   Enabled: false
@@ -108,11 +110,14 @@ RSpec/ContextWording:
 # RSpec/MessageSpies:
 #   Enabled: false
 
-# RSpec/MultipleExpectations:
-#   Enabled: false
+RSpec/MultipleExpectations:
+  Enabled: false
 
 RSpec/NestedGroups:
   Max: 7
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 10
 
 Style/BlockComments:
   Exclude:

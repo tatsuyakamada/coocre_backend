@@ -8,8 +8,7 @@ module Api
       end
 
       def create
-        category = Category.new(permitted_params)
-        category.save!
+        category = Category.create!(permitted_params)
         render json: category
       end
 
