@@ -89,22 +89,27 @@ module Api
         let(:dish_stuff1_stuff_id) { create(:stuff).id }
         let(:dish_stuff1_category) { DishStuff.categories.keys.sample }
         let(:dish_stuff2) { build(:dish_stuff) }
-        let(:params) do
-          {
-            id: dish.id,
-            name: name,
-            category: category,
-            genre: genre,
-            dish_stuffs: [
-              { id: dish_stuff1.id, stuff_id: dish_stuff1_stuff_id, category: dish_stuff1_category },
-              { id: nil, stuff_id: dish_stuff2.stuff_id, category: dish_stuff2.category }
-            ]
-          }
-        end
         let(:category) { Dish.categories.keys.sample }
         let(:genre) { Dish.genres.keys.sample }
 
-        before { put :update, params: { id: id, dish: params } }
+        before do
+          put(
+            :update,
+            params: {
+              id: id,
+              dish: {
+                id: dish.id,
+                name: name,
+                category: category,
+                genre: genre,
+                dish_stuffs: [
+                  { id: dish_stuff1.id, stuff_id: dish_stuff1_stuff_id, category: dish_stuff1_category },
+                  { id: nil, stuff_id: dish_stuff2.stuff_id, category: dish_stuff2.category }
+                ]
+              }
+            }
+          )
+        end
 
         context 'with not existence id' do
           let(:id) { -1 }
@@ -151,8 +156,7 @@ module Api
       end
 
       describe 'DELETE #destroy' do
-        let(:dishes) { create_list(:dish, 5) }
-        let(:dish) { dishes.sample }
+        let(:dish) { create_list(:dish, 5).sample }
         let(:dish_stuffs) { create_list(:dish_stuffs, 3, dish_id: dish.id) }
 
         before { delete :destroy, params: { id: dish.id } }

@@ -39,7 +39,7 @@ module Api
         let(:menu1) { build(:menu) }
         let(:menu2) { build(:menu) }
 
-        before { post :create, params: { scheduledMenu: params } }
+        before { post :create, params: { scheduled_menu: params } }
 
         context 'with invalid params' do
           let(:date) { nil }

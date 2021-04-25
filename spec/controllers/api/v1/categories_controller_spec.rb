@@ -51,18 +51,17 @@ module Api
         let(:categories) { create_list(:category, 5) }
         let(:category) { categories.sample }
 
-        before { put :update, params: { id: id, category: params } }
+        before { put :update, params: { id: id, category: { name: name } } }
 
         context 'with not existence id' do
           let(:id) { -1 }
-          let(:params) { {} }
+          let(:name) { Faker::Lorem.word }
 
           it_behaves_like 'not found record'
         end
 
         context 'with existence id' do
           let(:id) { category.id }
-          let(:params) { { name: name } }
 
           context 'with invalid params' do
             let(:name) { nil }

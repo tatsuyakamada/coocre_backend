@@ -85,8 +85,7 @@ module Api
       end
 
       describe 'DELETE #destroy' do
-        let(:stuffs) { create_list(:stuff, 5) }
-        let(:stuff) { stuffs.sample }
+        let(:stuff) { create_list(:stuff, 5).sample }
 
         before { delete :destroy, params: { id: id } }
 
