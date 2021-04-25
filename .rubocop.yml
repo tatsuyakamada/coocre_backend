@@ -117,7 +117,7 @@ RSpec/NestedGroups:
   Max: 7
 
 RSpec/MultipleMemoizedHelpers:
-  Max: 11
+  Max: 10
 
 Style/BlockComments:
   Exclude:
