@@ -40,18 +40,20 @@ module Api
       end
 
       def permitted_create_params
-        @create_params = params.require(:scheduledMenu).permit(
-          schedule: [:date, :category, :memo, images: []],
-          menus: %i[dish_id category memo image]
-        )
+        @create_params = \
+          params.deep_transform_keys!(&:underscore).require(:scheduled_menu).permit(
+            schedule: [:date, :category, :memo, images: []],
+            menus: %i[dish_id category memo image]
+          )
         @menus_create_params = @create_params[:menus]&.values
       end
 
       def permitted_update_params
-        update_params = params.require(:scheduledMenu).permit(
-          schedule: [:id, :date, :category, :memo, images: [], delete_images: []],
-          menus: %i[id dish_id category memo image delete_image]
-        )
+        update_params = \
+          params.deep_transform_keys!(&:underscore).require(:scheduled_menu).permit(
+            schedule: [:id, :date, :category, :memo, images: [], delete_images: []],
+            menus: %i[id dish_id category memo image delete_image]
+          )
 
         @schedule_update_params = update_params[:schedule]
         @menus_create_params, @menus_update_params = update_params[:menus]&.values&.partition { |menu| menu[:id].blank? }
