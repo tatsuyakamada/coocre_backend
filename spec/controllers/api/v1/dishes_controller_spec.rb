@@ -3,11 +3,6 @@ require 'rails_helper'
 module Api
   module V1
     describe DishesController do
-      before do
-        Faker::Food.unique.clear
-        Faker::Lorem.unique.clear
-      end
-
       describe 'GET #index' do
         let!(:dishes) { create_list(:dish, 5) }
 
