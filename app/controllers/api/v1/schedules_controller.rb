@@ -6,7 +6,7 @@ module Api
       before_action :permitted_update_params, only: :update
 
       def index
-        @schedules = Schedule.all.includes(menus: :dish).order(:date, :category)
+        @schedules = Schedule.with_attached_images.all.includes(menus: [{ image_attachment: :blob }, :dish]).order(:date, :category)
       end
 
       def create
@@ -60,12 +60,10 @@ module Api
       end
 
       def menus_update
-        if @menus_update_params
-          @menus_update_params.each { |param| menu_upate(param) }
+        delete_ids = @schedule.menus.ids - (@menus_update_params&.map { |menu| menu[:id].to_i } || [])
+        @schedule.menus.where(id: delete_ids).delete_all if delete_ids
 
-          delete_ids = @schedule.menus.ids - @menus_update_params.map { |menu| menu[:id].to_i }
-          @schedule.menus.where(id: delete_ids).delete_all if delete_ids
-        end
+        @menus_update_params&.each { |param| menu_upate(param) }
 
         @schedule.menus.create!(@menus_create_params) if @menus_create_params
       end
