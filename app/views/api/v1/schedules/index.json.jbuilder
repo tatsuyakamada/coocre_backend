@@ -18,7 +18,7 @@ json.array! @schedules do |schedule|
   end
 
   json.menus do
-    json.array! schedule.menus.order(:category) do |menu|
+    json.array! schedule.menus do |menu|
       json.id menu.id
       json.category menu.category
       json.dishId menu.dish_id

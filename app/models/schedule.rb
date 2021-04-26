@@ -1,5 +1,5 @@
 class Schedule < ApplicationRecord
-  has_many :menus, dependent: :destroy
+  has_many :menus, -> { order('category ASC') }, dependent: :destroy, inverse_of: :schedule
   has_many :dishes, through: :menus
   has_many_attached :images
 
