@@ -14,6 +14,7 @@ services:
       - /coocre_backend/git
     command: 'spring rails s -p 3100 -b 0.0.0.0'
     tty: true
+    stdin_open: true
     depends_on:
       - db
   db:
