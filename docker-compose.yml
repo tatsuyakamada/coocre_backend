@@ -5,16 +5,15 @@ services:
     container_name: coocre_backend
     env_file: .env
     ports:
-      - '3100:3100'
+      - '3200:3200'
     volumes:
       - .:/coocre_backend:delegated
       - /coocre_backend/vendor/bundle
       - /coocre_backend/node_modules
       - /coocre_backend/log
       - /coocre_backend/git
-    command: 'spring rails s -p 3100 -b 0.0.0.0'
+    command: bash -c "rm -rf tmp/pids/server.pids && spring rails s -p 3200 -b 0.0.0.0"
     tty: true
-    stdin_open: true
     depends_on:
       - db
   db:
