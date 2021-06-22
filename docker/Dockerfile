@@ -23,7 +23,7 @@ RUN set -x \
 
 RUN echo "\
 export PATH=$PATH:~/.yarn/bin/ \n\
-alias rs='rake tmp:cache:clear; bundle exec rails s -p 3100 -b 0.0.0.0' \n\
+alias rs='rake tmp:cache:clear; bundle exec rails s -p 3200 -b 0.0.0.0' \n\
 alias rc='bundle exec rails c' \n\
 " >> /root/.zshrc
 
