@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.array! @schedules do |schedule|
   json.schedule do
     json.id schedule.id

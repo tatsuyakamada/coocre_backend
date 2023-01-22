@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require 'amazing_print'
+
 ## Settings
 Pry.config.color = true
 Pry.config.editor = 'vim'
@@ -7,13 +11,6 @@ if defined?(PryByebug)
   Pry.commands.alias_command 's', 'step'
   Pry.commands.alias_command 'n', 'next'
   Pry.commands.alias_command 'fin', 'finish'
-end
-
-begin
-  require 'awesome_print'
-  Pry.config.print = proc { |output, value| output.puts value.ai }
-rescue LoadError
-  puts 'no awesome_print :('
 end
 
 # hirb

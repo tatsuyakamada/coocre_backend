@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Stuff < ApplicationRecord
   belongs_to :sub_category
   delegate :category, to: :sub_category

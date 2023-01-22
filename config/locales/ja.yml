@@ -7,6 +7,9 @@ ja:
       schedule: スケジュール
       stuff: 食材
       sub_category: 中分類
+    attributes:
+      sub_category:
+        name: 名前
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

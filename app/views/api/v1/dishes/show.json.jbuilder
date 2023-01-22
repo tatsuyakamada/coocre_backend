@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.dish do
   json.merge! @dish.attributes
 end
