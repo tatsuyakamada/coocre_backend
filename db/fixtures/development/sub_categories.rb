@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'csv'
 
 csv = CSV.read('db/fixtures/sub_categories.csv')

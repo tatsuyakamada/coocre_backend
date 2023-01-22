@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :menu do
-    schedule_id { create(:schedule).id }
-    dish_id { create(:dish).id }
+    association :schedule
+    association :dish, strategy: :create
     category { 'main' }
     memo { Faker::Lorem.sentence }
   end

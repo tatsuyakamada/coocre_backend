@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class CategoriesController < Api::V1::ApplicationController
       before_action :find_category, only: [:update]
 
       def index
-        @categories = Category.includes(sub_categories: :stuffs).all.order(:id)
+        @categories = Category.includes(sub_categories: :stuffs).order(:id)
       end
 
       def create

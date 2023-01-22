@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :dish_stuff do
-    dish_id { create(:dish).id }
-    stuff_id { create(:stuff).id }
+    association :dish, strategy: :create
+    association :stuff, strategy: :create
     category { DishStuff.categories.values.sample }
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class DishesController < Api::V1::ApplicationController
@@ -28,7 +30,6 @@ module Api
       def update
         Dish.transaction do
           @dish.update!(permitted_params.slice(*Dish.attribute_names))
-
           dish_stuffs_update
         end
 
@@ -66,7 +67,7 @@ module Api
       end
 
       def create_stuff(parameter)
-        @dish.dish_stuffs.create(parameter)
+        @dish.dish_stuffs.create!(parameter)
       end
 
       def permitted_params

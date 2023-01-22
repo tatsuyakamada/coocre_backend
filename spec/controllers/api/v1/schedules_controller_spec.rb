@@ -30,8 +30,8 @@ module Api
               memo: schedule.memo
             },
             menus: {
-              '0': { dish_id: menu1.dish_id, category: menu1.category, memo: menu1.memo },
-              '1': { dish_id: menu2.dish_id, category: menu2.category, memo: menu2.memo }
+              '0': { dish_id: menu1.dish.id, category: menu1.category, memo: menu1.memo },
+              '1': { dish_id: menu2.dish.id, category: menu2.category, memo: menu2.memo }
             }
           }
         end
@@ -82,8 +82,8 @@ module Api
               memo: memo
             },
             menus: {
-              '0': { id: menu1.id, dish_id: menu1.dish_id, category: menu1.category, memo: menu1.memo },
-              '1': { id: menu2.id, dish_id: menu2.dish_id, category: menu2.category, memo: menu2.memo }
+              '0': { id: menu1.id, dish_id: menu1.dish.id, category: menu1.category, memo: menu1.memo },
+              '1': { id: menu2.id, dish_id: menu2.dish.id, category: menu2.category, memo: menu2.memo }
             }
           }
         end

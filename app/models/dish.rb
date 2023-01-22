@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Dish < ApplicationRecord
   has_many :menus, dependent: :restrict_with_error
   has_many :schedules, through: :menus
