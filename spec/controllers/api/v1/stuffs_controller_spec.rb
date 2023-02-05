@@ -4,17 +4,10 @@ module Api
   module V1
     describe StuffsController do
       describe 'POST #create' do
-        let(:params) do
-          {
-            stuff: {
-              sub_category_id: sub_category.id,
-              name: name
-            }
-          }
-        end
+        let(:params) { { stuff: { sub_category_id: sub_category.id, name: } } }
         let(:sub_category) { create(:sub_category) }
 
-        before { post :create, params: params }
+        before { post :create, params: }
 
         context 'with ivalid params' do
           let(:name) { nil }
@@ -44,13 +37,13 @@ module Api
             stuff: {
               id: stuff.id,
               sub_category_id: sub_category.id,
-              name: name
+              name:
             }
           }
         end
         let(:sub_category) { create(:sub_category) }
 
-        before { put :update, params: { id: id, **params } }
+        before { put :update, params: { id:, **params } }
 
         context 'with not existence id' do
           let(:id) { -1 }
@@ -87,7 +80,7 @@ module Api
       describe 'DELETE #destroy' do
         let(:stuff) { create_list(:stuff, 5).sample }
 
-        before { delete :destroy, params: { id: id } }
+        before { delete :destroy, params: { id: } }
 
         context 'with not existence id' do
           let(:id) { -1 }
@@ -103,7 +96,7 @@ module Api
           end
 
           it 'deleted stuff' do
-            expect(Stuff.find_by(id: id)).to be_nil
+            expect(Stuff.find_by(id:)).to be_nil
           end
         end
       end

@@ -9,6 +9,6 @@ class DishStuff < ApplicationRecord
   validate :duplicate?
 
   def duplicate?
-    errors.add(:dish_id, 'duplicated!') if DishStuff.where(dish_id: dish_id, stuff_id: stuff_id).where.not(id: id).count.positive?
+    errors.add(:dish_id, 'duplicated!') if DishStuff.where(dish_id:, stuff_id:).where.not(id:).count.positive?
   end
 end

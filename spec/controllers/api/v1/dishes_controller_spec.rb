@@ -18,7 +18,7 @@ module Api
         let(:dish) { dishes.sample }
         let!(:menus) { create_list(:menu, 2, dish_id: dish.id) }
 
-        before  { get :show, params: { id: id, format: :json } }
+        before  { get :show, params: { id:, format: :json } }
 
         context 'with not existence id' do
           let(:id) { -1 }
@@ -48,7 +48,7 @@ module Api
             dish_stuffs: dish_stuff_params
           }
         end
-        let(:dish) { build(:dish, name: name) }
+        let(:dish) { build(:dish, name:) }
         let(:dish_stuffs) { build_list(:dish_stuff, 2) }
         let(:dish_stuff_params) { dish_stuffs.map { |ds| ds.slice(:stuff_id, :category) } }
 
@@ -96,12 +96,12 @@ module Api
           put(
             :update,
             params: {
-              id: id,
+              id:,
               dish: {
                 id: dish.id,
-                name: name,
-                category: category,
-                genre: genre,
+                name:,
+                category:,
+                genre:,
                 dish_stuffs: [
                   { id: dish_stuff1.id, stuff_id: dish_stuff1_stuff_id, category: dish_stuff1_category },
                   { id: nil, stuff_id: dish_stuff2.stuff_id, category: dish_stuff2.category }

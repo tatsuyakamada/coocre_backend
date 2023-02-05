@@ -35,7 +35,7 @@ module Api
             }
           }
         end
-        let(:schedule) { build(:schedule, date: date) }
+        let(:schedule) { build(:schedule, date:) }
         let(:menu1) { build(:menu) }
         let(:menu2) { build(:menu) }
 
@@ -76,11 +76,7 @@ module Api
         let(:menus) { create_list(:menu, 2, schedule_id: schedule.id) }
         let(:params) do
           {
-            schedule: {
-              date: date,
-              category: category,
-              memo: memo
-            },
+            schedule: { date:, category:, memo: },
             menus: {
               '0': { id: menu1.id, dish_id: menu1.dish.id, category: menu1.category, memo: menu1.memo },
               '1': { id: menu2.id, dish_id: menu2.dish.id, category: menu2.category, memo: menu2.memo }
@@ -92,7 +88,7 @@ module Api
         let(:menu1) { menus.first }
         let(:menu2) { build(:menu) }
 
-        before { put :update, params: { id: id, scheduledMenu: params } }
+        before { put :update, params: { id:, scheduledMenu: params } }
 
         context 'with not existence id' do
           let(:id) { -1 }
@@ -145,7 +141,7 @@ module Api
         let(:schedule) { create_list(:schedule, 5).sample }
         let!(:menus) { create_list(:menu, 2, schedule_id: schedule.id) }
 
-        before { delete :destroy, params: { id: id } }
+        before { delete :destroy, params: { id: } }
 
         context 'with not existence id' do
           let(:id) { -1 }
@@ -161,7 +157,7 @@ module Api
           end
 
           it 'deleted schedule & menu' do
-            expect(Schedule.find_by(id: id)).to be_nil
+            expect(Schedule.find_by(id:)).to be_nil
             expect(Menu.find_by(id: menus.first.id)).to be_nil
             expect(Menu.find_by(id: menus.last.id)).to be_nil
           end

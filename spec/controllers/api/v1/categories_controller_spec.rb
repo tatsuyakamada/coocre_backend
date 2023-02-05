@@ -26,7 +26,7 @@ module Api
       end
 
       describe 'POST #create' do
-        before { post :create, params: { category: { name: name } } }
+        before { post :create, params: { category: { name: } } }
 
         context 'invalid params' do
           let(:name) { nil }
@@ -51,7 +51,7 @@ module Api
         let(:categories) { create_list(:category, 5) }
         let(:category) { categories.sample }
 
-        before { put :update, params: { id: id, category: { name: name } } }
+        before { put :update, params: { id:, category: { name: } } }
 
         context 'with not existence id' do
           let(:id) { -1 }
