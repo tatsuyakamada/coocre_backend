@@ -1,4 +1,4 @@
-FROM ruby:3.0
+FROM ruby:3.1
 
 ENV INSTALL_DIR /usr/install
 ENV APP_DIR /coocre_backend

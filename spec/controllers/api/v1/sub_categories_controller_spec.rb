@@ -4,17 +4,10 @@ module Api
   module V1
     describe SubCategoriesController do
       describe 'POST #create' do
-        let(:params) do
-          {
-            sub_category: {
-              category_id: category.id,
-              name: name
-            }
-          }
-        end
+        let(:params) { { sub_category: { category_id: category.id, name: } } }
         let(:category) { create(:category) }
 
-        before { post :create, params: params }
+        before { post :create, params: }
 
         context 'invalid params' do
           let(:name) { nil }
@@ -43,10 +36,10 @@ module Api
           put(
             :update,
             params: {
-              id: id,
+              id:,
               sub_category: {
                 category_id: category.id,
-                name: name
+                name:
               }
             }
           )

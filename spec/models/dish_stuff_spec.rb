@@ -5,7 +5,7 @@ describe DishStuff do
     describe 'duplication' do
       subject { dish_stuff.valid? }
 
-      let(:dish_stuff) { build(:dish_stuff, dish_id: dish_id, stuff_id: stuff_id) }
+      let(:dish_stuff) { build(:dish_stuff, dish_id:, stuff_id:) }
       let!(:registered_dish_stuff) { create(:dish_stuff) }
 
       context 'dish_id' do
